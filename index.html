@@ -1,0 +1,1308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SELF-DEVELOPMENT - Transform Your Life Today</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+            padding: 0 2rem;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: bold;
+            font-size: 1.25rem;
+            background: linear-gradient(to right, #4f46e5, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-links.active {
+            display: flex;
+            position: absolute;
+            top: 64px;
+            left: 0;
+            right: 0;
+            flex-direction: column;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 2rem;
+            gap: 0.5rem;
+        }
+
+        .nav-links a {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #4f46e5;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: #1f2937;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex !important;
+                position: relative !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                flex-direction: row;
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                gap: 2rem;
+            }
+
+            .hamburger {
+                display: none;
+            }
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 5rem;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            border-radius: 1rem;
+            background: linear-gradient(135deg, #4f46e5, #9333ea, #ec4899);
+            padding: 3rem 2rem;
+            margin-bottom: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: white;
+            color: #4f46e5;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: #f3f4f6;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Overview Cards */
+        .overview-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .card p {
+            color: #6b7280;
+        }
+
+        /* Featured Section */
+        .featured {
+            background: linear-gradient(135deg, #eef2ff, #faf5ff);
+            padding: 3rem;
+            border-radius: 1rem;
+            border: 2px solid #c7d2fe;
+            margin-bottom: 4rem;
+        }
+
+        .featured h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #1f2937;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            color: #22c55e;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .benefit h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .benefit p {
+            color: #4b5563;
+        }
+
+        /* Sections Container */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #1f2937;
+        }
+
+        .section > p {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Modules Section */
+        .modules-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .module {
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .module:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .module-header {
+            padding: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            cursor: pointer;
+            align-items: flex-start;
+            transition: background-color 0.3s;
+            background-color: white;
+        }
+
+        .module:hover .module-header {
+            background-color: #f9fafb;
+        }
+
+        .module-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #eef2ff;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: #4f46e5;
+            flex-shrink: 0;
+        }
+
+        .module-info {
+            flex: 1;
+        }
+
+        .module-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .module-info p {
+            color: #6b7280;
+        }
+
+        .module-toggle {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #9ca3af;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            align-self: flex-start;
+            margin-top: 0.25rem;
+        }
+
+        .module.expanded .module-toggle {
+            transform: rotate(180deg);
+        }
+
+        .module-content {
+            display: none;
+            padding: 2rem;
+            border-top: 1px solid #e5e7eb;
+            background-color: #f9fafb;
+        }
+
+        .module.expanded .module-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .detail-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .detail-icon {
+            color: #22c55e;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .detail-item p {
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+
+        /* Tools Section */
+        .tools-container {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .tool-section {
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .tool-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #1f2937;
+        }
+
+        .tool-section-icon {
+            font-size: 1.75rem;
+        }
+
+        .goal-input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .goal-input-group input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .goal-input-group input:focus {
+            outline: none;
+            ring: 2px;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #4338ca;
+        }
+
+        .goals-list {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .goal-item {
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .goal-item:hover {
+            border-color: #c7d2fe;
+        }
+
+        .goal-item.completed {
+            background-color: #f0fdf4;
+            border-color: #86efac;
+        }
+
+        .goal-checkbox {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+        }
+
+        .goal-item:not(.completed) .goal-checkbox {
+            border: 2px solid #d1d5db;
+            color: #d1d5db;
+        }
+
+        .goal-item.completed .goal-checkbox {
+            background-color: #22c55e;
+            color: white;
+        }
+
+        .goal-text {
+            flex: 1;
+            font-size: 1.125rem;
+        }
+
+        .goal-item:not(.completed) .goal-text {
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .goal-item.completed .goal-text {
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .challenge-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            transition: box-shadow 0.3s;
+        }
+
+        .challenge-item:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .challenge-item p {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 4rem;
+        }
+
+        .contact-section {
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 2rem;
+        }
+
+        .contact-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #1f2937;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background-color: #4338ca;
+        }
+
+        .email-link {
+            text-align: center;
+            color: #6b7280;
+            margin-top: 1.5rem;
+        }
+
+        .email-link a {
+            color: #4f46e5;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .email-link a:hover {
+            color: #4338ca;
+        }
+
+        .whatsapp-section {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 1px solid #86efac;
+        }
+
+        .whatsapp-section p:first-of-type {
+            color: #374151;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            font-size: 1.125rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(34, 197, 94, 0.2);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #16a34a;
+            box-shadow: 0 15px 30px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-whatsapp:visited {
+            color: white;
+        }
+
+        .whatsapp-section p:last-child {
+            color: #6b7280;
+            margin-top: 1rem;
+        }
+
+        .developer-section {
+            background: linear-gradient(135deg, #eef2ff, #faf5ff);
+            border: 1px solid #c7d2fe;
+        }
+
+        .developer-section p:nth-of-type(1) {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .developer-section p:nth-of-type(2) {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+
+        .developer-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .developer-box {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .developer-box h3 {
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .developer-box p {
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #4f46e5, #9333ea);
+            color: white;
+            margin-top: 5rem;
+            padding: 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            font-weight: bold;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section h1 {
+                font-size: 2rem;
+            }
+
+            .section > p {
+                font-size: 1rem;
+            }
+
+            .featured {
+                padding: 1.5rem;
+            }
+
+            .featured h2 {
+                font-size: 1.5rem;
+            }
+
+            .tool-section {
+                padding: 1.5rem;
+            }
+
+            .tool-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">🧠</div>
+                <span>SELF-DEVELOPMENT</span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#" onclick="showSection('home'); return false;" class="nav-link active">Home</a>
+                <a href="#" onclick="showSection('modules'); return false;" class="nav-link">Modules</a>
+                <a href="#" onclick="showSection('tools'); return false;" class="nav-link">Tools</a>
+                <a href="#" onclick="showSection('contact'); return false;" class="nav-link">Contact</a>
+            </div>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- HOME SECTION -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Transform Your Life Today</h1>
+                    <p>Your complete guide to personal excellence, growth, and success across all areas of life.</p>
+                    <button class="btn-primary" onclick="showSection('modules')">Explore All Modules →</button>
+                </div>
+            </div>
+
+            <div class="overview-cards">
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Mind</h3>
+                    <p>Personal growth & mindset</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">❤️</div>
+                    <h3>Soul</h3>
+                    <p>Emotional wellness & purpose</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Action</h3>
+                    <p>Productivity & results</p>
+                </div>
+            </div>
+
+            <div class="featured">
+                <h2>Why Self-Development?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit">
+                        <div class="benefit-icon">✓</div>
+                        <div>
+                            <h4>Unlock Your Potential</h4>
+                            <p>Discover abilities you didn't know you had and achieve more than you ever thought possible.</p>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-icon">✓</div>
+                        <div>
+                            <h4>Build Confidence</h4>
+                            <p>Develop unshakeable self-belief through proven strategies and consistent progress.</p>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-icon">✓</div>
+                        <div>
+                            <h4>Create Lasting Change</h4>
+                            <p>Transform habits, mindsets, and behaviors for permanent, sustainable growth.</p>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-icon">✓</div>
+                        <div>
+                            <h4>Achieve Your Dreams</h4>
+                            <p>Create actionable roadmaps and strategies to reach your most ambitious goals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULES SECTION -->
+        <section id="modules" class="section">
+            <div class="section-title">
+                <h1>8 Complete Modules</h1>
+                <p>Master all aspects of self-development with our comprehensive learning modules.</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Module 1 -->
+                <div class="module" onclick="toggleModule(this)">
+                    <div class="module-header">
+                        <div class="module-icon">🎯</div>
+                        <div class="module-info">
+                            <h3>Goal Setting & Planning</h3>
+                            <p>Learn to set SMART goals, create actionable plans, and track your progress effectively.</p>
+                        </div>
+                        <button class="module-toggle">▼</button>
+                    </div>
+                    <div class="module-content">
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Define clear, measurable objectives</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Create 30-day, 90-day, and 1-year plans</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Break down large goals into micro-habits</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Track progress with metrics and KPIs</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Celebrate milestones and adjust strategies</p></div>
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module" onclick="toggleModule(this)">
+                    <div class="module-header">
+                        <div class="module-icon">🧠</div>
+                        <div class="module-info">
+                            <h3>Personal Growth & Mindset</h3>
+                            <p>Develop a growth mindset, overcome limiting beliefs, and unlock your full potential.</p>
+                        </div>
+                        <button class="module-toggle">▼</button>
+                    </div>
+                    <div class="module-content">
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Embrace the growth mindset philosophy</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Identify and challenge limiting beliefs</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Build resilience and emotional intelligence</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Practice positive affirmations daily</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Develop self-awareness through reflection</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Master stress management techniques</p></div>
+                    </div>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="module" onclick="toggleModule(this)">
+                    <div class="module-header">
+                        <div class="module-icon">⚡</div>
+                        <div class="module-info">
+                            <h3>Productivity & Time Management</h3>
+                            <p>Master your time, eliminate distractions, and achieve more with less effort.</p>
+                        </div>
+                        <button class="module-toggle">▼</button>
+                    </div>
+                    <div class="module-content">
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Time blocking and Pomodoro technique</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Priority matrix (Eisenhower method)</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Digital detox and focus strategies</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Energy management throughout the day</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Batch processing and deep work sessions</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Overcome procrastination habits</p></div>
+                    </div>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="module" onclick="toggleModule(this)">
+                    <div class="module-header">
+                        <div class="module-icon">📚</div>
+                        <div class="module-info">
+                            <h3>Skills & Continuous Learning</h3>
+                            <p>Accelerate learning, acquire new skills, and stay competitive in a changing world.</p>
+                        </div>
+                        <button class="module-toggle">▼</button>
+                    </div>
+                    <div class="module-content">
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Effective learning strategies and techniques</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>80/20 principle: Learn what matters most</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Skill stacking for career advancement</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Online courses and resource recommendations</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Deliberate practice and repetition</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Building expertise in your field</p></div>
+                    </div>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="module" onclick="toggleModule(this)">
+                    <div class="module-header">
+                        <div class="module-icon">❤️</div>
+                        <div class="module-info">
+                            <h3>Emotional Wellness & Mental Health</h3>
+                            <p>Cultivate emotional intelligence, manage stress, and build mental resilience.</p>
+                        </div>
+                        <button class="module-toggle">▼</button>
+                    </div>
+                    <div class="module-content">
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Understanding your emotions deeply</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Mindfulness and meditation practices</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Journaling for emotional clarity</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Anxiety and depression management</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Building healthy coping mechanisms</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Self-compassion and acceptance</p></div>
+                    </div>
+                </div>
+
+                <!-- Module 6 -->
+                <div class="module" onclick="toggleModule(this)">
+                    <div class="module-header">
+                        <div class="module-icon">👥</div>
+                        <div class="module-info">
+                            <h3>Relationships & Social Skills</h3>
+                            <p>Build meaningful connections, improve communication, and strengthen relationships.</p>
+                        </div>
+                        <button class="module-toggle">▼</button>
+                    </div>
+                    <div class="module-content">
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Active listening and empathy skills</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Non-violent communication (NVC)</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Conflict resolution strategies</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Networking and building connections</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Setting healthy boundaries</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Family and personal relationship dynamics</p></div>
+                    </div>
+                </div>
+
+                <!-- Module 7 -->
+                <div class="module" onclick="toggleModule(this)">
+                    <div class="module-header">
+                        <div class="module-icon">📈</div>
+                        <div class="module-info">
+                            <h3>Financial Literacy & Money Management</h3>
+                            <p>Take control of your finances, build wealth, and achieve financial independence.</p>
+                        </div>
+                        <button class="module-toggle">▼</button>
+                    </div>
+                    <div class="module-content">
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Budgeting and expense tracking</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Debt management and elimination</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Investing fundamentals (stocks, crypto, real estate)</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Building passive income streams</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Retirement planning essentials</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Developing a wealthy mindset</p></div>
+                    </div>
+                </div>
+
+                <!-- Module 8 -->
+                <div class="module" onclick="toggleModule(this)">
+                    <div class="module-header">
+                        <div class="module-icon">💪</div>
+                        <div class="module-info">
+                            <h3>Physical Health & Fitness</h3>
+                            <p>Improve your physical health, develop fitness habits, and boost energy levels.</p>
+                        </div>
+                        <button class="module-toggle">▼</button>
+                    </div>
+                    <div class="module-content">
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Exercise routines for all fitness levels</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Nutrition and healthy eating plans</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Sleep optimization and circadian rhythms</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Hydration and detoxification</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Energy management and vitality</p></div>
+                        <div class="detail-item"><div class="detail-icon">✓</div><p>Preventive healthcare practices</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOOLS SECTION -->
+        <section id="tools" class="section">
+            <div class="section-title">
+                <h1>Interactive Tools</h1>
+                <p>Use these tools to track your progress and stay accountable.</p>
+            </div>
+
+            <div class="tools-container">
+                <!-- Goal Tracker -->
+                <div class="tool-section" style="background: linear-gradient(135deg, #dbeafe, #e0e7ff); border: 1px solid #93c5fd;">
+                    <h2><span class="tool-section-icon">🎯</span> Goal Tracker</h2>
+                    <div class="goal-input-group">
+                        <input type="text" id="goalInput" placeholder="Add a new goal..." onkeypress="if(event.key==='Enter') addGoal()">
+                        <button class="btn" onclick="addGoal()">Add Goal</button>
+                    </div>
+                    <div class="goals-list" id="goalsList">
+                        <div class="empty-state">No goals yet. Add your first goal above!</div>
+                    </div>
+                </div>
+
+                <!-- 30-Day Challenge -->
+                <div class="tool-section" style="background: linear-gradient(135deg, #f3e8ff, #fce7f3); border: 1px solid #e9d5ff;">
+                    <h2><span class="tool-section-icon">⏰</span> 30-Day Challenge Ideas</h2>
+                    <div class="challenges-grid">
+                        <div class="challenge-item">🧘 Meditate 10 minutes daily</div>
+                        <div class="challenge-item">📚 Read 30 pages per day</div>
+                        <div class="challenge-item">💪 Exercise 30 minutes daily</div>
+                        <div class="challenge-item">✍️ Journal your thoughts daily</div>
+                        <div class="challenge-item">🎯 Pursue your top priority</div>
+                        <div class="challenge-item">🚫 No social media after 8pm</div>
+                        <div class="challenge-item">💧 Drink 2 liters of water daily</div>
+                        <div class="challenge-item">🌅 Wake up at 5am every day</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section">
+            <div class="section-title">
+                <h1>Get in Touch</h1>
+                <p>Have questions? Ready to start your transformation journey?</p>
+            </div>
+
+            <div class="contact-container">
+                <!-- Contact Form -->
+                <div class="contact-section" style="background: linear-gradient(135deg, #f9fafb, #f3f4f6); border: 1px solid #e5e7eb;">
+                    <h2>📨 Send us a Message</h2>
+                    <div class="form-group">
+                        <input type="text" id="contactName" placeholder="Your Name">
+                        <input type="email" id="contactEmail" placeholder="Your Email">
+                        <textarea id="contactMessage" placeholder="Your Message"></textarea>
+                        <button class="btn-submit" onclick="sendMessage()">✉️ Send Message</button>
+                    </div>
+                    <div class="email-link">
+                        Or email us directly at: <a href="mailto:yusufforsucess@gmail.com">yusufforsucess@gmail.com</a>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Contact -->
+                <div class="contact-section whatsapp-section">
+                    <h2><span style="font-size: 1.5rem;">📱</span> Quick Contact</h2>
+                    <p>Connect with us directly via WhatsApp for instant support:</p>
+                    <a href="https://wa.me/2347064202942?text=Hi%20YUSUF%20AND%20AMINA,%20I%20want%20to%20know%20more%20about%20self-development" class="btn-whatsapp" target="_blank">
+                        📱 WhatsApp: +234 7064202942
+                    </a>
+                    <p>Available 24/7 for guidance and support</p>
+                </div>
+
+                <!-- Developer Info -->
+                <div class="contact-section developer-section">
+                    <h2><span style="font-size: 1.5rem;">👤</span> About the Developers</h2>
+                    <p>YUSUF AND AMINA</p>
+                    <p>Passionate about personal growth and transformation. We've created this comprehensive self-development platform to help thousands of people achieve their goals and unlock their full potential.</p>
+                    <div class="developer-boxes">
+                        <div class="developer-box">
+                            <h3>Our Mission</h3>
+                            <p>Empower individuals to create lasting positive change in their lives.</p>
+                        </div>
+                        <div class="developer-box">
+                            <h3>Our Vision</h3>
+                            <p>A world where everyone realizes their potential and achieves excellence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>SELF-DEVELOPMENT</h3>
+                    <p>Your complete guide to personal excellence and transformation.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p>Email: <a href="mailto:yusufforsucess@gmail.com">yusufforsucess@gmail.com</a></p>
+                    <p>WhatsApp: +234 7064202942</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <p><a href="https://wa.me/2347064202942" target="_blank">📱 WhatsApp Us</a></p>
+                    <p>Available 24/7</p>
+                </div>
+            </div>
+            <div class="footer-divider">
+                <p>&copy; 2024 SELF-DEVELOPMENT. All rights reserved. Made with ❤️ by YUSUF AND AMINA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.getElementById('hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.getElementById('navLinks').classList.remove('active');
+            document.getElementById('hamburger').classList.remove('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Modules
+        function toggleModule(moduleElement) {
+            moduleElement.classList.toggle('expanded');
+        }
+
+        // Goals
+        let goals = [];
+
+        function addGoal() {
+            const input = document.getElementById('goalInput');
+            const goalText = input.value.trim();
+            if (goalText === '') {
+                alert('Please enter a goal');
+                return;
+            }
+            goals.push({ id: Date.now(), text: goalText, completed: false });
+            input.value = '';
+            renderGoals();
+        }
+
+        function toggleGoal(id) {
+            const goal = goals.find(g => g.id === id);
+            if (goal) {
+                goal.completed = !goal.completed;
+                renderGoals();
+            }
+        }
+
+        function renderGoals() {
+            const goalsList = document.getElementById('goalsList');
+            if (goals.length === 0) {
+                goalsList.innerHTML = '<div class="empty-state">No goals yet. Add your first goal above!</div>';
+                return;
+            }
+            goalsList.innerHTML = goals.map(goal => `
+                <div class="goal-item ${goal.completed ? 'completed' : ''}" onclick="toggleGoal(${goal.id})">
+                    <div class="goal-checkbox">${goal.completed ? '✓' : '○'}</div>
+                    <span class="goal-text">${goal.text}</span>
+                </div>
+            `).join('');
+        }
+
+        // Contact Form
+        function sendMessage() {
+            const name = document.getElementById('contactName').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const message = document.getElementById('contactMessage').value.trim();
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            alert(`Thank you, ${name}! We'll contact you soon at ${email}`);
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactMessage').value = '';
+        }
+
+        renderGoals();
+    </script>
+</body>
+</html>
+```
